@@ -1,5 +1,6 @@
 from gurobipy import *
-from pybaseball import batting_stats
+from pybaseball import batting_stats 
+from pybaseball import pitching_stats
 
 batting_data = batting_stats(2023)
 
@@ -8,4 +9,11 @@ batting_data = batting_data[batting_data['PA'] > 100]
 
 #and then we take only some of the statistics, since the original dataset has over 200
 df_batters = batting_data[['Name', 'Team', 'PA', 'OBP', 'wOBA', 'HR']]
+
+#and now the same for pitchers
+pitching_data = pitching_stats(2023)
+
+pitching_data = pitching_data[pitching_data['IP'] > 50]
+
+df_pitchers = pitching_data[['Name', 'Team', 'IP', 'ERA', 'SO', 'WAR']]
 
