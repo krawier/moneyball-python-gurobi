@@ -1,19 +1,15 @@
 from gurobipy import *
 from pybaseball import batting_stats 
 from pybaseball import pitching_stats
+import random
+import pandas as pd
 
+#first we take the batters who appear at the plate regurarly and we shorten the data bc the orignal dataset has over 200 stats
 batting_data = batting_stats(2023)
-
-#first we take the batters who appear at the plate regurarly
-batting_data = batting_data[batting_data['PA'] > 100]
-
-#and then we take only some of the statistics, since the original dataset has over 200
-df_batters = batting_data[['Name', 'Team', 'PA', 'OBP', 'wOBA', 'HR']]
+df_batters = batting_data[batting_data['PA'] > 100].copy() 
+df_batters = df_batters[['Name', 'Team', 'PA', 'OBP', 'wOBA', 'HR']].reset_index(drop=True)
 
 #and now the same for pitchers
 pitching_data = pitching_stats(2023)
-
-pitching_data = pitching_data[pitching_data['IP'] > 50]
-
-df_pitchers = pitching_data[['Name', 'Team', 'IP', 'ERA', 'SO', 'WAR']]
-
+df_pitchers = pitching_data[pitching_data['IP'] > 50].copy()
+df_pitchers = df_pitchers[['Name', 'Team', 'IP', 'ERA', 'SO', 'WAR']].reset_index(drop=True)
