@@ -1,0 +1,11 @@
+from gurobipy import *
+from pybaseball import batting_stats
+
+batting_data = batting_stats(2023)
+
+#first we take the batters who appear at the plate regurarly
+batting_data = batting_data[batting_data['PA'] > 100]
+
+#and then we take only some of the statistics, since the original dataset has over 200
+df_batters = batting_data[['Name', 'Team', 'PA', 'OBP', 'wOBA', 'HR']]
+
