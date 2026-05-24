@@ -14,6 +14,13 @@ pitching_data = pitching_stats(2023)
 df_pitchers = pitching_data[pitching_data['IP'] > 50].copy()
 df_pitchers = df_pitchers[['Name', 'Team', 'IP', 'ERA', 'SO', 'WAR']].reset_index(drop=True)
 
+#player positions
+batters_positions = ['C', '1B', '2B', '3B', 'SS', 'OF', 'OF', 'OF']
+df_batters['Pos'] = [random.choice(batters_positions) for _ in range(len(df_batters))]
+df_pitchers['Pos'] = 'SP'
+
+
+
 def normalize(column):
     return (column - column.min()) / (column.max() - column.min())
 
@@ -45,4 +52,10 @@ df_pitchers['Value'] = (
 
 df_pitchers['Salary'] = [random.randint(4000, 10000) for _ in range(len(df_pitchers))]
 
-
+idx_C  = df_batters[df_batters['Pos'] == 'C'].index.tolist()
+idx_1B = df_batters[df_batters['Pos'] == '1B'].index.tolist()
+idx_2B = df_batters[df_batters['Pos'] == '2B'].index.tolist() 
+idx_3B = df_batters[df_batters['Pos'] == '3B'].index.tolist() 
+idx_SS = df_batters[df_batters['Pos'] == 'SS'].index.tolist() 
+idx_OF = df_batters[df_batters['Pos'] == 'OF'].index.tolist()
+idx_SP = df_pitchers[df_pitchers['Pos'] == 'SP'].index.tolist()
