@@ -1,5 +1,5 @@
 from gurobipy import *
-from data import df_batters, df_pitchers
+from data import *
 
 B_idx = df_batters.index.tolist()
 P_idx = df_pitchers.index.tolist()
@@ -20,5 +20,11 @@ problem.addConstr(
 )
 
 #Constraint no 2 -> Cardinality Constraint
-problem.addConstr(quicksum(x_pitchers[i] for i in P_idx) == 1, "Exactly_1_Pitcher")
-problem.addConstr(quicksum(x_batters[i] for i in B_idx) == 8, "Exactly_8_Batters") 
+problem.addConstr(quicksum(x_batters[i] for i in idx_C) == 1, "Exactly_1_Catcher")
+problem.addConstr(quicksum(x_batters[i] for i in idx_1B) == 1, "Exactly_1_First_Baseman")
+problem.addConstr(quicksum(x_batters[i] for i in idx_2B) == 1, "Exactly_1_Second_Baseman")
+problem.addConstr(quicksum(x_batters[i] for i in idx_3B) == 1, "Exactly_1_Third_Baseman") 
+problem.addConstr(quicksum(x_batters[i] for i in idx_SS) == 1, "Exactly_1_Shortstop") 
+problem.addConstr(quicksum(x_batters[i] for i in idx_OF) == 3, "Exactly_3_Outfielders")
+
+problem.addConstr(quicksum(x_pitchers[i] for i in idx_SP) == 1, "Exactly_1_Starting_Pitcher")
