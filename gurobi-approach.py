@@ -61,7 +61,7 @@ if problem.status == GRB.OPTIMAL:
             selected_players.append({'Position': pos, 'Name': name, 'Team': team, 'Value': val, 'Salary': sal})
 
     for p in selected_players:
-        print(f"[{p['Position']:<2}] {p['Name']:<20} ({p['Team']:<3}) | Value: {p['Value']:>6.2f} | Koszt: ${p['Salary']}")
+        print(f"[{p['Position']:<2}] {p['Name']:<20} ({p['Team']:<3}) | Value: {p['Value']:>6.2f} | Cost: ${p['Salary']}")
 
     print("-" * 50)
     print(f"Used budget: ${total_cost} / ${totalBudget}\n")

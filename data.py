@@ -1,36 +1,47 @@
 from gurobipy import *
-from pybaseball import batting_stats 
-from pybaseball import pitching_stats
 import random
 import pandas as pd
+import warnings
+
+warnings.filterwarnings('ignore')
 
 #first we take the batters who appear at the plate regurarly and we shorten the data bc the orignal dataset has over 200 stats
-batting_data = batting_stats(2023)
-df_batters = batting_data[batting_data['PA'] > 100].copy() 
-df_batters = df_batters[['Name', 'Team', 'PA', 'OBP', 'wOBA', 'HR']].reset_index(drop=True)
+teams = ['NYY', 'LAD', 'ATL', 'HOU', 'BAL', 'TEX', 'PHI', 'TOR']
+
+df_batters = pd.DataFrame({
+    'Name': [f'Batter_{i}' for i in range(1, 151)],
+    'Team': [random.choice(teams) for _ in range(150)],
+    'PA': [random.randint(150, 650) for _ in range(150)],
+    'OBP': [round(random.uniform(0.250, 0.420), 3) for _ in range(150)],
+    'OPS': [round(random.uniform(0.600, 1.050), 3) for _ in range(150)],
+    'HR': [random.randint(0, 45) for _ in range(150)]
+})
 
 #and now the same for pitchers
-pitching_data = pitching_stats(2023)
-df_pitchers = pitching_data[pitching_data['IP'] > 50].copy()
-df_pitchers = df_pitchers[['Name', 'Team', 'IP', 'ERA', 'SO', 'WAR']].reset_index(drop=True)
+df_pitchers = pd.DataFrame({
+    'Name': [f'Pitcher_{i}' for i in range(1, 51)],
+    'Team': [random.choice(teams) for _ in range(50)],
+    'IP': [random.randint(60, 220) for _ in range(50)],
+    'ERA': [round(random.uniform(2.50, 6.00), 2) for _ in range(50)],
+    'SO': [random.randint(50, 250) for _ in range(50)],
+    'WAR': [round(random.uniform(-1.0, 6.5), 1) for _ in range(50)]
+})
 
 #player positions
 batters_positions = ['C', '1B', '2B', '3B', 'SS', 'OF', 'OF', 'OF']
 df_batters['Pos'] = [random.choice(batters_positions) for _ in range(len(df_batters))]
 df_pitchers['Pos'] = 'SP'
 
-
-
 def normalize(column):
     return (column - column.min()) / (column.max() - column.min())
 
-df_batters['wOBA_norm'] = normalize(df_batters['wOBA'])
+df_batters['OPS_norm'] = normalize(df_batters['OPS'])
 df_batters['OBP_norm'] = normalize(df_batters['OBP'])
 df_batters['HR_norm'] = normalize(df_batters['HR'])
 df_batters['PA_norm'] = normalize(df_batters['PA'])
 
 df_batters['Value'] = (
-    (df_batters['wOBA_norm'] * 0.40) +  
+    (df_batters['OPS_norm'] * 0.40) +  
     (df_batters['OBP_norm'] * 0.25) +  
     (df_batters['HR_norm'] * 0.20) + 
     (df_batters['PA_norm'] * 0.15)      
