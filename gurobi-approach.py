@@ -11,6 +11,12 @@ problem = Model("Moneyball_Problem")
 x_batters = problem.addVars(B_idx, vtype=GRB.BINARY)
 x_pitchers = problem.addVars(P_idx, vtype=GRB.BINARY)
 
+#objective function
+problem.setObjective(
+    quicksum(df_batters.loc[i, 'Value'] * x_batters[i] for i in B_idx) + 
+    quicksum(df_pitchers.loc[i, 'Value'] * x_pitchers[i] for i in P_idx), 
+    GRB.MAXIMIZE
+)
 
 #Constraint no 1 -> Budeget Constraint
 problem.addConstr(
