@@ -5,6 +5,8 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
+random.seed(42)
+
 #first we take the batters who appear at the plate regurarly and we shorten the data bc the orignal dataset has over 200 stats
 teams = ['NYY', 'LAD', 'ATL', 'HOU', 'BAL', 'TEX', 'PHI', 'TOR']
 
