@@ -12,7 +12,7 @@ How to run project:
 (It's nice to split your terminal, and run 3. and 4. simultaneously, so that you can see the results side by side)
 If you want to retune the parameters of the BFO: `python bfo-tuner.py` will spit out the result.
 
-##PL
+## PL
 Projekt jest zainspirowany filmem pt. "Moneyball", w którym gra Brad Pitt. Celem programu jest zbudowanie jak najlepszej drużyny baseballowej złożonej z dostępnych nam graczy. Ich wartość jest wyliczana na bazie sabermetri i pensji. Problem to tak naprawdę zmodyfikowana wersja  Problemu Plecakowego z Wielokrotnym Wyborem. Cały raport można przeczytać tutaj `moneyball_report.pdf`
 
 Jak uruchomić projekt: 
