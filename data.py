@@ -11,22 +11,22 @@ random.seed(67)
 teams = ['NYY', 'LAD', 'ATL', 'HOU', 'BAL', 'TEX', 'PHI', 'TOR']
 
 df_batters = pd.DataFrame({
-    'Name': [f'Batter_{i}' for i in range(1, 151)],
-    'Team': [random.choice(teams) for _ in range(150)],
-    'PA': [random.randint(150, 650) for _ in range(150)],
-    'OBP': [round(random.uniform(0.250, 0.420), 3) for _ in range(150)],
-    'OPS': [round(random.uniform(0.600, 1.050), 3) for _ in range(150)],
-    'HR': [random.randint(0, 45) for _ in range(150)]
+    'Name': [f'Batter_{i}' for i in range(1, 251)],
+    'Team': [random.choice(teams) for _ in range(250)],
+    'PA': [random.randint(150, 650) for _ in range(250)],
+    'OBP': [round(random.uniform(0.250, 0.420), 3) for _ in range(250)],
+    'OPS': [round(random.uniform(0.600, 1.050), 3) for _ in range(250)],
+    'HR': [random.randint(0, 45) for _ in range(250)]
 })
 
 #and now the same for pitchers
 df_pitchers = pd.DataFrame({
-    'Name': [f'Pitcher_{i}' for i in range(1, 51)],
-    'Team': [random.choice(teams) for _ in range(50)],
-    'IP': [random.randint(60, 220) for _ in range(50)],
-    'ERA': [round(random.uniform(2.50, 6.00), 2) for _ in range(50)],
-    'SO': [random.randint(50, 250) for _ in range(50)],
-    'WAR': [round(random.uniform(-1.0, 6.5), 1) for _ in range(50)]
+    'Name': [f'Pitcher_{i}' for i in range(1, 91)],
+    'Team': [random.choice(teams) for _ in range(90)],
+    'IP': [random.randint(60, 220) for _ in range(90)],
+    'ERA': [round(random.uniform(2.50, 6.00), 2) for _ in range(90)],
+    'SO': [random.randint(50, 250) for _ in range(90)],
+    'WAR': [round(random.uniform(-1.0, 6.5), 1) for _ in range(90)]
 })
 
 #player positions
