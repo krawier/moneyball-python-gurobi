@@ -1,5 +1,5 @@
 from gurobipy import *
-from data import *
+from data import df_batters, df_pitchers, idx_C, idx_1B, idx_2B, idx_3B, idx_SS, idx_OF, idx_SP
 import pandas as pd
 
 B_idx = df_batters.index.tolist()
@@ -68,7 +68,7 @@ if problem.status == GRB.OPTIMAL:
 
     results_df = pd.DataFrame(selected_players)
 
-    results_df.to_csv('gurobi_results.csv', index=False)
+    results_df.to_csv('../data/gurobi_results.csv', index=False)
     print("Resutls saved to 'gurobi_results.csv' ")
 else:
     print("Model didn't find an optimal solution. Budget too small, or constraints too rigorious!")

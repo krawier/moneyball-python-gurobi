@@ -1,7 +1,7 @@
 import math
 import random
 import pandas as pd
-from data import *
+from data import df_batters, df_pitchers, idx_C, idx_1B, idx_2B, idx_3B, idx_SS, idx_OF, idx_SP
 
 B_idx = df_batters.index.tolist()
 P_idx = df_pitchers.index.tolist()
@@ -178,5 +178,5 @@ print("-" * 50)
 print(f"Used budget: ${best_sal_overall} / ${totalBudget}\n")
 
 results_df = pd.DataFrame(selected_players)
-results_df.to_csv('bfo_results.csv', index=False)
+results_df.to_csv('../data/bfo_results.csv', index=False)
 print("Results saved to 'bfo_results.csv' ")
